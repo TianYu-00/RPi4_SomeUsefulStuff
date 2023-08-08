@@ -25,3 +25,9 @@ sudo ./Pi_DockerInstaller.sh
 sudo ./Pi_PortainerInstaller.sh
 ``` 
 
+
+this script puts portainer on port 9000. static ip followed by port  
+example:  
+```
+xxx.xxx.xxx.xxx:9000
+```
