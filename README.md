@@ -1,4 +1,4 @@
-# RPi4_UsefulApps
+# RPi4_Collections
 
 PiHole - https://pi-hole.net/  
 PiVPN - https://www.pivpn.io/  
