@@ -1,4 +1,4 @@
-## To give file access to all users 
+## CHMOD
 `sudo chmod a+r xxxxxx`  
 The symbolic mode format consists of three characters. The first character specifies the target user or user group. Table 1 shows the four letters that represent each user group.
   
