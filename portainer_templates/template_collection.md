@@ -21,3 +21,7 @@ https://raw.githubusercontent.com/ntv-one/portainer/main/template.json
 ```
 https://raw.githubusercontent.com/xneo1/portainer_templates/master/Template/template.json
 ```
+
+```
+https://raw.githubusercontent.com/mycroftwilde/portainer_templates/master/Template/template.json
+```
