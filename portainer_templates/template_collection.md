@@ -13,7 +13,7 @@ selfhostedpro:
 https://github.com/SelfhostedPro/selfhosted_templates
 ```
 
-[Nice people from reddit] (https://www.reddit.com/r/selfhosted/comments/ntc4xa/best_portainer_app_template_list/)
+[Nice people from reddit](https://www.reddit.com/r/selfhosted/comments/ntc4xa/best_portainer_app_template_list/)
 ```
 https://raw.githubusercontent.com/ntv-one/portainer/main/template.json
 ```
