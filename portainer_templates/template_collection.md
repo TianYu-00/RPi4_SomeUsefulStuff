@@ -3,10 +3,18 @@ default portainer template:
 https://raw.githubusercontent.com/portainer/templates/master/templates-2.0.json
 ```
 
-nova spirit templates: 
+nova spirit aka pi-hosted templates: 
 ```
 https://github.com/novaspirit/pi-hosted
-```  
+```
+Pi OS 32, DietPi	
+```
+https://raw.githubusercontent.com/pi-hosted/pi-hosted/master/template/portainer-v2-arm32.json
+```
+Pi OS 64, Ubuntu, DietPi
+```
+https://raw.githubusercontent.com/pi-hosted/pi-hosted/master/template/portainer-v2-arm64.json
+```
 
 selfhostedpro: 
 ```
