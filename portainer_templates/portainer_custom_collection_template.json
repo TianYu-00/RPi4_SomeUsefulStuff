@@ -1,0 +1,67 @@
+{
+  "version": "1",
+  "ARM64 Templates": [
+    {
+      "categories": ["Other", "Tools", "VPN", "Proxy"],
+      "description": "Cloudflare Tunnel provides you with a secure way to connect your resources to Cloudflare without a publicly routable IP address. With Tunnel, you do not send traffic to an external IP — instead, a lightweight daemon in your infrastructure (cloudflared) creates outbound-only connections to Cloudflare's edge.",
+      "env": [
+        {
+          "default": "Your_Tunnel_Token_From_The_Zero_Dashboard_Access_Tunnel",
+          "label": "token",
+          "name": "TUNNEL_TOKEN"
+        }
+      ],
+      "image": "cloudflare/cloudflared:latest",
+      "logo": "https://raw.githubusercontent.com/pi-hosted/pi-hosted/master/images/cloudflared.svg",
+      "name": "cloudflared-tunnel",
+      "note": "Cloudflare tunnel container used to host ur cloudflare tunnels on ur pi 64",
+      "platform": "linux",
+      "command": "tunnel run",
+      "restart_policy": "unless-stopped",
+      "title": "Cloudflared Tunnel",
+      "type": 1
+    },
+    {
+      "categories": ["Other", "Tools"],
+      "description": "A Linux network-level advertisement and Internet tracker blocking application which acts as a DNS sinkhole.",
+      "image": "pihole/pihole:latest",
+      "logo": "https://raw.githubusercontent.com/pi-hosted/pi-hosted/master/images/pihole.png",
+      "name": "pihole",
+      "note": "Pihole used to adblock and host ur own dns sinkhole",
+      "platform": "linux",
+      "ports": ["53:53/tcp", "53:53/udp", "67:67/udp", "1010:80/tcp", "4443:443/tcp"],
+      "restart_policy": "unless-stopped",
+      "title": "Pi-Hole",
+      "type": 1,
+      "volumes": [
+        {
+          "bind": "/portainer/Files/AppData/Config/PiHole",
+          "container": "/etc/pihole"
+        },
+        {
+          "bind": "/portainer/Files/AppData/Config/PiHole/DNS",
+          "container": "/etc/dnsmasq.d"
+        }
+      ]
+    },
+    {
+      "categories": ["Other", "Tools"],
+      "description": "This is a Bitwarden server API implementation written in Rust compatible with upstream Bitwarden clients*, perfect for self-hosted deployment where running the official resource-heavy service might not be ideal..",
+      "image": "vaultwarden/server:latest",
+      "logo": "https://raw.githubusercontent.com/pi-hosted/pi-hosted/master/images/bitwarden.png",
+      "name": "vaultwarden",
+      "note": "<b>Template created by Pi-Hosted Series</b><br><b>Check our Github page: <a href=\"https://github.com/pi-hosted/pi-hosted\" target=\"_blank\">https://github.com/pi-hosted/pi-hosted</a></b><br><br><b>Official Webpage: </b><a href=\"https://github.com/dani-garcia/vaultwarden\" target=\"_blank\">https://github.com/dani-garcia/vaultwarden</a><br><b>Official Docker Documentation: </b><a href=\"https://github.com/dani-garcia/vaultwarden/wiki\" target=\"_blank\">https://github.com/dani-garcia/vaultwarden/wiki</a><br><br><br>Alternative Implementation of the Bitwarden Server API in Rust, including web vault.",
+      "platform": "linux",
+      "ports": ["8010:80/tcp", "3012:3012/tcp"],
+      "restart_policy": "unless-stopped",
+      "title": "Vaultwarden",
+      "type": 1,
+      "volumes": [
+        {
+          "bind": "/portainer/Files/AppData/Config/Bitwarden",
+          "container": "/data"
+        }
+      ]
+    }
+  ]
+}
