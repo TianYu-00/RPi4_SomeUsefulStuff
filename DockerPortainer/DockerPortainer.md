@@ -20,7 +20,14 @@ sudo chmod +x Pi_PortainerInstaller.sh
 Run the scripts:  
 ```
 sudo ./Pi_DockerInstaller.sh
-```  
+```
+Restart
+```
+sudo reboot
+```
+```
+cd Desktop/dockerportainer
+```
 ```
 sudo ./Pi_PortainerInstaller.sh
 ``` 
