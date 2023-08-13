@@ -33,7 +33,7 @@ sudo ./Pi_PortainerInstaller.sh
 ``` 
 
 
-this script puts portainer on port 9000. static ip followed by port  
+this script puts portainer on port 9000. static ip followed by port. Use that to go to local portainer site.  
 example:  
 ```
 xxx.xxx.xxx.xxx:9000
