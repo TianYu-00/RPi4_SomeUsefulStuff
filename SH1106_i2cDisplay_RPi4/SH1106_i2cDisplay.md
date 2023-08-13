@@ -162,14 +162,17 @@ To automatically run this script you can try and add it to ur crontab
 `crontab -e`
 if its ur firsttime ever running this command it will show to choose ur editor. Just choose the 1st one.
 Now that were in, go all the way down to the bottom of a new line, add this line of code to make it run automatically after reboot.
-`@reboot python3/home/pi/statdisplay.py & `
+`@reboot python3 <directoryOfTheScript>`
+for example
+`@reboot python3 /home/pi/statdisplay.py`
 `statdisplay.py` is ur python script file name.
 
 press crtl o (to say you want to write the file). then
-
 press Enter (to say you want to overwrite existing file). then
-
 press ctrl x (to exit nano)
+
+when its saved, do a reboot and check it out.
+`sudo reboot`
 
 
 
