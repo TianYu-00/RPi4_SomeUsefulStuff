@@ -1,46 +1,62 @@
 {
   "version": "2",
   "Pi ARM64 Template": [
+		{
+			"categories": [
+				"Other",
+				"Tools",
+				"VPN",
+				"Proxy"
+			],
+			"description": "Cloudflare Tunnel provides you with a secure way to connect your resources to Cloudflare without a publicly routable IP address. With Tunnel, you do not send traffic to an external IP — instead, a lightweight daemon in your infrastructure (cloudflared) creates outbound-only connections to Cloudflare's edge.",
+			"env": [
+				{
+					"default": "Your_Tunnel_Token_From_The_Zero_Dashboard_Access_Tunnel",
+					"label": "token",
+					"name": "TUNNEL_TOKEN"
+				}
+			],
+			"image": "cloudflare/cloudflared:latest",
+			"logo": "https://raw.githubusercontent.com/pi-hosted/pi-hosted/master/images/cloudflared.svg",
+			"name": "cloudflared-tunnel",
+			"note": "<b>Template created by Pi-Hosted Series</b><br><b>Check our Github page: <a href=\"https://github.com/pi-hosted/pi-hosted\" target=\"_blank\">https://github.com/pi-hosted/pi-hosted</a></b><br><br><b>Official Webpage: </b><a href=\"https://www.cloudflare.com/products/tunnel/\" target=\"_blank\">https://www.cloudflare.com/products/tunnel/</a><br><b>Official Docker Documentation: </b><a href=\"https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/install-and-setup/\" target=\"_blank\">https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/install-and-setup/</a><br><br><br>Requires a token in order to work. You can find the dashboard <a href='https://dash.teams.cloudflare.com/'>here</a>. Once you logged in, go to Access followed by Tunnels. Create a tunnel. After you gave it a name you'll see in the command section a long string of chacters. This is your token you must copy.",
+			"platform": "linux",
+			"command": "tunnel run",
+			"restart_policy": "unless-stopped",
+			"title": "Cloudflared Tunnel",
+			"type": 1
+		},
     {
-      "categories": ["Other", "Tools", "VPN", "Proxy"],
-      "description": "Cloudflare Tunnel provides you with a secure way to connect your resources to Cloudflare without a publicly routable IP address. With Tunnel, you do not send traffic to an external IP — instead, a lightweight daemon in your infrastructure (cloudflared) creates outbound-only connections to Cloudflare's edge.",
-      "env": [
-        {
-          "default": "Your_Tunnel_Token_From_The_Zero_Dashboard_Access_Tunnel",
-          "label": "token",
-          "name": "TUNNEL_TOKEN"
-        }
-      ],
-      "image": "cloudflare/cloudflared:latest",
-      "logo": "https://raw.githubusercontent.com/pi-hosted/pi-hosted/master/images/cloudflared.svg",
-      "name": "cloudflared-tunnel",
-      "platform": "linux",
-      "command": "tunnel run",
-      "restart_policy": "unless-stopped",
-      "title": "Cloudflared Tunnel",
-      "type": 1
-    },
-    {
-      "categories": ["Other", "Tools"],
-      "description": "A Linux network-level advertisement and Internet tracker blocking application which acts as a DNS sinkhole.",
-      "image": "pihole/pihole:latest",
-      "logo": "https://raw.githubusercontent.com/pi-hosted/pi-hosted/master/images/pihole.png",
-      "name": "pihole",
-      "platform": "linux",
-      "ports": ["53:53/tcp", "53:53/udp", "67:67/udp", "1010:80/tcp", "4443:443/tcp"],
-      "restart_policy": "unless-stopped",
-      "title": "Pi-Hole",
-      "type": 1,
-      "volumes": [
-        {
-          "bind": "/portainer/Files/AppData/Config/PiHole",
-          "container": "/etc/pihole"
-        },
-        {
-          "bind": "/portainer/Files/AppData/Config/PiHole/DNS",
-          "container": "/etc/dnsmasq.d"
-        }
-      ]
-    }
+			"categories": [
+				"Other",
+				"Tools"
+			],
+			"description": "A Linux network-level advertisement and Internet tracker blocking application which acts as a DNS sinkhole.",
+			"image": "pihole/pihole:latest",
+			"logo": "https://raw.githubusercontent.com/pi-hosted/pi-hosted/master/images/pihole.png",
+			"name": "pihole",
+			"note": "<b>Template created by Pi-Hosted Series</b><br><b>Check our Github page: <a href=\"https://github.com/pi-hosted/pi-hosted\" target=\"_blank\">https://github.com/pi-hosted/pi-hosted</a></b><br><br><b>Official Webpage: </b><a href=\"https://pi-hole.net/\" target=\"_blank\">https://pi-hole.net/</a><br><b>Official Docker Documentation: </b><a href=\"https://github.com/pi-hole/docker-pi-hole/#running-pi-hole-docker\" target=\"_blank\">https://github.com/pi-hole/docker-pi-hole/#running-pi-hole-docker</a><br><h3><b>Pi-Hosted dedicated documentation: </b><a href=\"https://github.com/pi-hosted/pi-hosted/blob/master/docs/pi-hole.md\" target=\"_blank\">pi-hole.md</a></h3><br><br><br>When the installation is complete, navigate to your.ip.goes.here:1010/admin. Follow the article <a href='https://medium.com/@niktrix/getting-rid-of-systemd-resolved-consuming-port-53-605f0234f32f'>here</a> if you run into issues binding to port 53. If you like to use Pi-Hole's built in DHCP-Server change the Network type to host and open advance options and scroll to Labels and add: NET_ADMIN with the value True. When you do so, specify a port is no more needed, navigate to your.ip.goes.here/admin.",
+			"platform": "linux",
+			"ports": [
+				"53:53/tcp",
+				"53:53/udp",
+				"67:67/udp",
+				"1010:80/tcp",
+				"4443:443/tcp"
+			],
+			"restart_policy": "unless-stopped",
+			"title": "Pi-Hole",
+			"type": 1,
+			"volumes": [
+				{
+					"bind": "/portainer/Files/AppData/Config/PiHole",
+					"container": "/etc/pihole"
+				},
+				{
+					"bind": "/portainer/Files/AppData/Config/PiHole/DNS",
+					"container": "/etc/dnsmasq.d"
+				}
+			]
+		}
   ]
 }
