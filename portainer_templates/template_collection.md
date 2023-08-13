@@ -20,6 +20,9 @@ selfhostedpro:
 ```
 https://github.com/SelfhostedPro/selfhosted_templates
 ```
+```
+https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Template/template.json
+```
 
 [Nice people from reddit](https://www.reddit.com/r/selfhosted/comments/ntc4xa/best_portainer_app_template_list/)
 ```
