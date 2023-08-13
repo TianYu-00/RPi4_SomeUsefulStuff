@@ -95,7 +95,7 @@ with canvas(device) as draw:
 
 ```
 
-Or try out my script that shows the Temp, CPU Usage, Memory Usage, and Pi's Local IP + Public IP Switching Between The 2:
+Or try out my script that shows the Temp, CPU Usage, Memory Usage, and Pi's public IP:
 You could also just download this script straight from my repo in the same directory that this md file is.
 in order to use this script you need to first install netifaces.
 `pip install luma.oled netifaces`
@@ -106,75 +106,45 @@ from luma.core.interface.serial import i2c
 from luma.oled.device import sh1106
 from PIL import Image, ImageDraw, ImageFont
 import psutil
-import requests
-import socket
 import netifaces
-
+import socket
 # Initialize display
 serial = i2c(port=1, address=0x3C)
 disp = sh1106(serial)
-
-def get_public_ip_address():
+def get_ip_address():
     try:
-        response = requests.get('https://api64.ipify.org?format=json')
-        data = response.json()
-        return data['ip']
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.connect(("8.8.8.8", 80))
+        ip = s.getsockname()[0]
+        s.close()
+        return ip
     except Exception as e:
         return 'IP not found'
-
-def get_local_ip_address():
-    try:
-        interfaces = netifaces.interfaces()
-        for interface in interfaces:
-            if interface != 'lo':
-                addrs = netifaces.ifaddresses(interface)
-                if netifaces.AF_INET in addrs:
-                    ip = addrs[netifaces.AF_INET][0]['addr']
-                    return ip
-        return 'IP not found'
-    except Exception as e:
-        return 'IP not found'
-
 def display_info():
-    toggle_interval = 5  # Toggle between IP addresses every 5 seconds
-    toggle_count = 0
-
     while True:
         # Get system information
         cpu_usage = psutil.cpu_percent(interval=1)
         memory_usage = psutil.virtual_memory().percent
         temperature = round(float(open('/sys/class/thermal/thermal_zone0/temp').read()) / 1000, 2)
-
-        # Toggle between local and public IP addresses
-        if toggle_count % (toggle_interval // 2) == 0:
-            ip_address = get_local_ip_address()
-        else:
-            ip_address = get_public_ip_address()
-
-        toggle_count += 1
-
+        ip_address = get_ip_address()
         # Create an image
         image = Image.new('1', (disp.width, disp.height))
         draw = ImageDraw.Draw(image)
         font = ImageFont.load_default()
-
         # Draw information on the image
+        draw.text((0, 48), f'IP: {ip_address}', font=font, fill=255)
         draw.text((0, 0), f'Temp: {temperature} C', font=font, fill=255)
         draw.text((0, 16), f'CPU: {cpu_usage}%', font=font, fill=255)
         draw.text((0, 32), f'Mem: {memory_usage}%', font=font, fill=255)
-        draw.text((0, 48), f'IP: {ip_address}', font=font, fill=255)
-
+        
         # Display the image on the OLED screen
         disp.display(image)
-        time.sleep(1)  # Update every 1 second
-
+        time.sleep(2)  # Update every 2 seconds
 if __name__ == '__main__':
     try:
         display_info()
-
     except KeyboardInterrupt:
         pass
-
     finally:
         disp.clear()
         disp.display()
