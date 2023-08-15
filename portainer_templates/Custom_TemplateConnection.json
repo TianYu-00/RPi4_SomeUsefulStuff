@@ -1,0 +1,30 @@
+{
+	"version": "2",
+	"templates": [
+		{
+			"categories": [
+				"Other",
+				"Tools",
+				"VPN",
+				"Proxy"
+			],
+			"description": "Cloudflare Tunnel provides you with a secure way to connect your resources to Cloudflare without a publicly routable IP address. With Tunnel, you do not send traffic to an external IP — instead, a lightweight daemon in your infrastructure (cloudflared) creates outbound-only connections to Cloudflare's edge.",
+			"env": [
+				{
+					"default": "Your_Tunnel_Token_From_The_Zero_Dashboard_Access_Tunnel",
+					"label": "token",
+					"name": "TUNNEL_TOKEN"
+				}
+			],
+			"image": "cloudflare/cloudflared:latest",
+			"logo": "https://raw.githubusercontent.com/pi-hosted/pi-hosted/master/images/cloudflared.svg",
+			"name": "cloudflared-tunnel",
+			"note": "<b>Template created by Pi-Hosted Series</b><br><b>Check our Github page: <a href=\"https://github.com/pi-hosted/pi-hosted\" target=\"_blank\">https://github.com/pi-hosted/pi-hosted</a></b><br><br><b>Official Webpage: </b><a href=\"https://www.cloudflare.com/products/tunnel/\" target=\"_blank\">https://www.cloudflare.com/products/tunnel/</a><br><b>Official Docker Documentation: </b><a href=\"https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/install-and-setup/\" target=\"_blank\">https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/install-and-setup/</a><br><br><br>Requires a token in order to work. You can find the dashboard <a href='https://dash.teams.cloudflare.com/'>here</a>. Once you logged in, go to Access followed by Tunnels. Create a tunnel. After you gave it a name you'll see in the command section a long string of chacters. This is your token you must copy.",
+			"platform": "linux",
+			"command": "tunnel run",
+			"restart_policy": "unless-stopped",
+			"title": "Cloudflared Tunnel",
+			"type": 1
+		}
+	]
+}
